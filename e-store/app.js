@@ -4,6 +4,7 @@ const port = 3001;
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const authRouter = require("./routes/auth");
+const postRoute = require("./routes/post");
 
 dotenv.config();
 
@@ -27,6 +28,7 @@ app.use(express.json());
 // import routes
 
 app.use("/api/user", authRouter);
+app.use("/api/post", postRoute);
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);

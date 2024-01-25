@@ -13,10 +13,10 @@ const userSchema = new mongoose.Schema({
     min: 255,
     min: 6,
   },
-  password: {
+  psd: {
     type: String,
     require: true,
-    max: 1024,
+    max: 255,
     min: 6,
   },
   date: {
