@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const authRouter = require("./routes/auth");
 const postRoute = require("./routes/post");
+const cors = require("cors");
 
 dotenv.config();
 
@@ -24,7 +25,7 @@ mongoose
 //Middleware
 
 app.use(express.json());
-
+app.use(cors());
 // import routes
 
 app.use("/api/user", authRouter);

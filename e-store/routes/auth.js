@@ -18,7 +18,7 @@ router.post("/register", async (req, res) => {
   //validate data before user
   //   const validation = new Joi.ValidationError(req.body, schema);
   //   res.send(validation);
-
+  console.log(req.body);
   //check on exist user
   const emailExist = await User.findOne({ email: req.body.email });
   if (emailExist) return res.status(400).send("Email already exist!");
@@ -30,7 +30,7 @@ router.post("/register", async (req, res) => {
 
   //save new user
   const user = new User({
-    name: req.body.name,
+    // name: req.body.name,
     email: req.body.email,
     psd: hashPassword,
   });
@@ -55,7 +55,9 @@ router.post("/login", async (req, res) => {
 
   //create token
   const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
-  res.header("auth-token", token).send(token);
+  res.set("auth-jwt-token", "token").json({
+    token: token,
+  });
 });
 
 module.exports = router;
